@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Games Cluster</string>
+    <string name="game_search_hint">Search game</string>
+    <string name="game_search_button_text">Search</string>
 </resources>
