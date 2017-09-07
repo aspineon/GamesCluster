@@ -4,10 +4,13 @@ import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.wawa_applications.gamescluster.model.search.GamePlatformModel;
 import com.wawa_applications.gamescluster.model.search.GameResultModel;
 
+import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,16 +33,14 @@ public class GameCardViewModel {
 
     @BindingAdapter({"bind:imageUrl"})
     public static void loadImage(ImageView view, String imageUrl) {
-        /*
-        Picasso.with(view.getContext())
+
+        Glide.with(view.getContext())
                 .load(imageUrl)
-                .placeholder(R.drawable.placeholder)
+                .centerCrop()
+                .crossFade()
                 .into(view);
-
-//albo Glide
-
-        Glide.with(view.getContext()).load(imageUrl).into(view);*/
     }
+
 
 
     public String getImageUrl() {
@@ -53,7 +54,11 @@ public class GameCardViewModel {
 
         if(gameResult.getExpectedReleaseYear() != null) releaseYear = String.valueOf(gameResult.getExpectedReleaseYear());
 
-        if(gameResult.getOriginalReleaseDate() != null) releaseYear = String.valueOf(gameResult.getOriginalReleaseDate().get(Calendar.YEAR));
+        if(gameResult.getOriginalReleaseDate() != null){
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(gameResult.getOriginalReleaseDate());
+            releaseYear = String.valueOf(calendar.get(Calendar.YEAR));
+        }
 
         return gameResult.getName() + " (" + releaseYear + ")";
 
@@ -71,7 +76,12 @@ public class GameCardViewModel {
             platformString = platformString.concat(", " + platform);
 
         }
-
         return platformString;
     }
+
+    public void setGameResult(GameResultModel game){
+        this.gameResult = game;
+        notifyAll();
+    }
+
 }
