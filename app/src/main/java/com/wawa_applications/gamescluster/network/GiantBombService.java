@@ -1,9 +1,8 @@
 package com.wawa_applications.gamescluster.network;
 
-import android.database.Observable;
 
 import com.wawa_applications.gamescluster.model.search.GiantBombSearchModel;
-
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -13,6 +12,6 @@ import retrofit2.http.Query;
 
 public interface GiantBombService {
 
-    @GET("search/?api_key=[API-KEY]&format=json&resources=game")
+    @GET("api/search/?api_key=[API-KEY]&format=json&resources=game")
     Observable<GiantBombSearchModel> searchForGames(@Query("query") String gameName);
 }
