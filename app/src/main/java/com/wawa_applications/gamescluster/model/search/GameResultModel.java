@@ -32,13 +32,11 @@ public class GameResultModel {
     @Expose
     private Integer expectedReleaseYear;
 
-    //TODO GSONBuilder must have date format set - https://kylewbanks.com/blog/Tutorial-Android-Parsing-JSON-with-GSON
 
-    /*
     @SerializedName("original_release_date")
     @Expose
-    private Date originalReleaseDate;
-*/
+    private String originalReleaseDate;
+
 
     @SerializedName("platforms")
     @Expose
@@ -86,15 +84,24 @@ public class GameResultModel {
         this.name = name;
     }
 
-/*
-    public Date getOriginalReleaseDate() {
+    public String getOriginalReleaseDate() {
         return originalReleaseDate;
     }
 
-    public void setOriginalReleaseDate(Date originalReleaseDate) {
+    public void setOriginalReleaseDate(String originalReleaseDate) {
         this.originalReleaseDate = originalReleaseDate;
     }
-*/
+
+    public String getReleaseYear(){
+        String releaseYear = "N/A";
+        if(getExpectedReleaseYear() != null) releaseYear = String.valueOf(getExpectedReleaseYear());
+
+        if(getOriginalReleaseDate() != null){
+            releaseYear = getOriginalReleaseDate().substring(0, 4);
+        }
+        return releaseYear;
+    }
+
     public List<GamePlatformModel> getPlatforms() {
         return platforms;
     }

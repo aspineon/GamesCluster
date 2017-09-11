@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.android.databinding.library.baseAdapters.BR;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.wawa_applications.gamescluster.model.search.GameResultModel;
 import com.wawa_applications.gamescluster.model.search.GiantBombSearchModel;
@@ -56,6 +58,7 @@ public class MainViewModel extends BaseObservable {
                 .build();
         GiantBombService apiService = retrofit.create(GiantBombService.class);
 
+
         apiService.searchForGames(gameQuery)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -87,7 +90,7 @@ public class MainViewModel extends BaseObservable {
         gameQueryResult = "Znaleziono " + String.valueOf(respond.getResults().size()) + " gier.";
         gameQueryResult = gameQueryResult + " Są to: ";
         for (GameResultModel resultModel : respond.getResults()){
-            gameQueryResult = gameQueryResult + ", " + resultModel.getName();
+            gameQueryResult = gameQueryResult + ", " + resultModel.getName() + " " + resultModel.getReleaseYear();
         }
 
         notifyPropertyChanged(BR._all);

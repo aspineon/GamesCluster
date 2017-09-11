@@ -50,17 +50,8 @@ public class GameCardViewModel {
 
     public String getFullTitle(){
 
-        String releaseYear = "N/A";
 
-        if(gameResult.getExpectedReleaseYear() != null) releaseYear = String.valueOf(gameResult.getExpectedReleaseYear());
-/*
-        if(gameResult.getOriginalReleaseDate() != null){
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(gameResult.getOriginalReleaseDate());
-            releaseYear = String.valueOf(calendar.get(Calendar.YEAR));
-        }
-*/
-        return gameResult.getName() + " (" + releaseYear + ")";
+        return gameResult.getName() + " (" + gameResult.getReleaseYear()+ ")";
 
     }
 
