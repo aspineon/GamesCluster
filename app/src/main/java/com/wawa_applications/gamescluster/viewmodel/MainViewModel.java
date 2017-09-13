@@ -1,11 +1,13 @@
 package com.wawa_applications.gamescluster.viewmodel;
 
+import android.app.Activity;
 import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.databinding.Observable;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.android.databinding.library.baseAdapters.BR;
@@ -40,17 +42,23 @@ public class MainViewModel extends BaseObservable {
     private String gameQuery = "";
     private Context context;
     private List<GameResultModel> gamesList;
-    public boolean gamesRecyclerVisibility = false;
     private String gameQueryResult = "";
+    private int progressVisibility;
+    private int recyclerVisibility;
 
     public MainViewModel(@NotNull Context context){
         this.context = context;
         gamesList = new ArrayList<>();
+
+        progressVisibility = View.GONE;
+        recyclerVisibility = View.GONE;
     }
 
     public void onClickSearchGames(View view) {
-
-
+        recyclerVisibility = View.GONE;
+        progressVisibility = View.VISIBLE;
+        hideKeyboard();
+        notifyPropertyChanged(BR._all);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://www.giantbomb.com")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -71,10 +79,15 @@ public class MainViewModel extends BaseObservable {
                     @Override
                     public void onNext(GiantBombSearchModel respond) {
                         handleResult(respond);
+                        progressVisibility = View.GONE;
+                        recyclerVisibility = View.VISIBLE;
+                        notifyPropertyChanged(BR._all);
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        progressVisibility = View.GONE;
+                        notifyPropertyChanged(BR._all);
                         Toast.makeText(context, "Error occurs", Toast.LENGTH_SHORT).show();
                         Log.v("Games Cluster", "Error occurs", e);
                     }
@@ -98,24 +111,14 @@ public class MainViewModel extends BaseObservable {
         notifyPropertyChanged(BR._all);
     }
 
-    public void reset() {
-    //TODO unsubscribe rxjava observer
-        context = null;
+    private void hideKeyboard(){
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
     }
 
     @Bindable
     public List<GameResultModel> getGamesList() {
         return gamesList;
-    }
-
-    @Bindable
-    public boolean getGamesRecyclerVisibility(){
-        return gamesRecyclerVisibility;
-    }
-
-
-    public void setGamesRecyclerVisibility(boolean isVisible){
-        this.gamesRecyclerVisibility = isVisible;
     }
 
     @Bindable
@@ -133,7 +136,13 @@ public class MainViewModel extends BaseObservable {
         return gameQueryResult;
     }
 
-    public void setGameQueryResult(String gameQueryResult) {
-        this.gameQueryResult = gameQueryResult;
+    @Bindable
+    public int getProgressVisibility() {
+        return progressVisibility;
+    }
+
+    @Bindable
+    public int getRecyclerVisibility() {
+        return recyclerVisibility;
     }
 }

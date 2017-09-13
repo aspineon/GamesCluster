@@ -39,13 +39,18 @@
         android:layout_height="wrap_content"
         android:text="@{mainViewModel.gameQuery}"/>
 
-
+    <ProgressBar
+        android:id="@+id/progress_games"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:visibility="@{mainViewModel.progressVisibility}"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list_games"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        android:visibility="@{mainViewModel.recyclerVisibility}"/>
 
 
 </LinearLayout>
