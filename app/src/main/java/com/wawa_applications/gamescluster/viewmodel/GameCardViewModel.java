@@ -31,17 +31,6 @@ public class GameCardViewModel {
     }
 
 
-    @BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(ImageView view, String imageUrl) {
-
-        Glide.with(view.getContext())
-                .load(imageUrl)
-                .centerCrop()
-                .crossFade()
-                .into(view);
-    }
-
-
 
     public String getImageUrl() {
         return gameResult.getImage().getSmallUrl();

@@ -37,13 +37,9 @@
         android:id="@+id/search_query_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@={mainViewModel.gameQuery}"/>
+        android:text="@{mainViewModel.gameQuery}"/>
 
-    <TextView
-        android:id="@+id/search_query_result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@={mainViewModel.gameQueryResult}"/>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list_games"

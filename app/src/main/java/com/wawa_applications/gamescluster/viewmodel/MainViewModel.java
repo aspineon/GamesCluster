@@ -93,12 +93,19 @@ public class MainViewModel extends BaseObservable {
             gameQueryResult = gameQueryResult + ", " + resultModel.getName() + " " + resultModel.getReleaseYear();
         }
 
+        gamesList.clear();
+        gamesList.addAll(respond.getResults());
         notifyPropertyChanged(BR._all);
     }
 
     public void reset() {
     //TODO unsubscribe rxjava observer
         context = null;
+    }
+
+    @Bindable
+    public List<GameResultModel> getGamesList() {
+        return gamesList;
     }
 
     @Bindable

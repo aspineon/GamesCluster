@@ -1,5 +1,9 @@
 package com.wawa_applications.gamescluster.model.search;
 
+import android.databinding.BindingAdapter;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -13,35 +17,35 @@ import java.util.List;
 
 public class GameResultModel {
 
-
     @SerializedName("id")
     @Expose
     private int id;
+
     @SerializedName("api_detail_url")
     @Expose
     private String apiDetailUrl;
+
     @SerializedName("name")
     @Expose
     private String name;
+
     @SerializedName("image")
     @Expose
     private GameImageModel image;
-
 
     @SerializedName("expected_release_year")
     @Expose
     private Integer expectedReleaseYear;
 
-
     @SerializedName("original_release_date")
     @Expose
     private String originalReleaseDate;
-
 
     @SerializedName("platforms")
     @Expose
     private List<GamePlatformModel> platforms = new ArrayList<GamePlatformModel>();
 
+    private String fullTitle;
 
     public String getApiDetailUrl() {
         return apiDetailUrl;
@@ -50,7 +54,6 @@ public class GameResultModel {
     public void setApiDetailUrl(String apiDetailUrl) {
         this.apiDetailUrl = apiDetailUrl;
     }
-
 
     public Integer getExpectedReleaseYear() {
         return expectedReleaseYear;
@@ -110,5 +113,7 @@ public class GameResultModel {
         this.platforms = platforms;
     }
 
-
+    public String getFullTitle(){
+        return name + " (" + getReleaseYear() + ")";
+    }
 }
