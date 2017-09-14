@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = mainActivityBinding.listGames;
         GameSearchAdapter adapter = new GameSearchAdapter(mainViewModel.getGamesList());
         recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }

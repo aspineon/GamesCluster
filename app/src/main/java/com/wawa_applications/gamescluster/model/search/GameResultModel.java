@@ -41,9 +41,9 @@ public class GameResultModel {
     @Expose
     private String originalReleaseDate;
 
-    @SerializedName("platforms")
+    @SerializedName("deck")
     @Expose
-    private List<GamePlatformModel> platforms = new ArrayList<GamePlatformModel>();
+    private String deck;
 
     private String fullTitle;
 
@@ -105,12 +105,12 @@ public class GameResultModel {
         return releaseYear;
     }
 
-    public List<GamePlatformModel> getPlatforms() {
-        return platforms;
+    public String getDeck() {
+        return deck;
     }
 
-    public void setPlatforms(List<GamePlatformModel> platforms) {
-        this.platforms = platforms;
+    public void setDeck(String deck) {
+        this.deck = deck;
     }
 
     public String getFullTitle(){

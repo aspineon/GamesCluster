@@ -1,7 +1,5 @@
 package com.wawa_applications.gamescluster.view;
 
-import android.content.Context;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
@@ -11,11 +9,8 @@ import android.view.ViewGroup;
 
 import com.wawa_applications.gamescluster.BR;
 import com.wawa_applications.gamescluster.R;
-import com.wawa_applications.gamescluster.databinding.GameCardBinding;
 import com.wawa_applications.gamescluster.model.search.GameResultModel;
-import com.wawa_applications.gamescluster.viewmodel.GameCardViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

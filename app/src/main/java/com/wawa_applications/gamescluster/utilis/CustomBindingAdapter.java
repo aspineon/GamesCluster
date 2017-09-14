@@ -17,7 +17,7 @@ public class CustomBindingAdapter {
 
         Glide.with(view.getContext())
                 .load(imageUrl)
-                .centerCrop()
+                .fitCenter()
                 .crossFade()
                 .into(view);
 
