@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools">
 
     <data>
         <import type="com.wawa_applications.gamescluster.model.search.GameResultModel" />
@@ -15,8 +16,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="3dp"
-        android:elevation="2dp"
-        app:cardCornerRadius="2dp"
+        card_view:cardCornerRadius="20dp"
+        card_view:cardPreventCornerOverlap="false"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardElevation="5dp"
         >
 
     <LinearLayout
@@ -51,7 +54,8 @@
                 android:textAlignment="gravity"
                 android:text="@{gameResult.name}"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/color_white"/>
 
             <TextView
                 android:id="@+id/game_release_year"
@@ -61,7 +65,8 @@
                 android:layout_gravity="top"
                 android:textAlignment="gravity"
                 android:text="@{gameResult.releaseYear}"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textColor="@color/color_white"/>
 
             <TextView
                 android:id="@+id/game_deck"
@@ -71,7 +76,8 @@
                 android:layout_gravity="top"
                 android:textAlignment="gravity"
                 android:text="@{gameResult.deck}"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:textColor="@color/color_white"/>
 
         </LinearLayout>
     </LinearLayout>

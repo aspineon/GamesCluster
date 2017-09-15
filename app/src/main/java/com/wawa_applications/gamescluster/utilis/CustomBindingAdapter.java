@@ -21,6 +21,5 @@ public class CustomBindingAdapter {
                 .crossFade()
                 .into(view);
 
-        Log.v("Gamescluster", "załadowany rysunek?");
     }
 }

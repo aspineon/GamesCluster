@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="viewcard_colors">
+        <item>@color/color_skin</item>
+        <item>@color/color_blue_light</item>
+        <item>@color/color_tomato</item>
+        <item>@color/color_green</item>
+        <item>@color/color_pink</item>
+        <item>@color/color_peach</item>
+        <item>@color/color_gold</item>
+        <item>@color/color_green_light</item>
+        <item>@color/color_grey</item>
+        <item>@color/color_purple</item>
+    </integer-array>
+
+</resources>

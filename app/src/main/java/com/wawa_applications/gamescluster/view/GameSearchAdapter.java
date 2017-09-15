@@ -1,7 +1,10 @@
 package com.wawa_applications.gamescluster.view;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,7 @@ import com.wawa_applications.gamescluster.R;
 import com.wawa_applications.gamescluster.model.search.GameResultModel;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Wojtek on 2017-09-06.
@@ -20,16 +24,20 @@ import java.util.List;
 
 public class GameSearchAdapter extends RecyclerView.Adapter<GameSearchAdapter.GameSearchBindingHolder> {
     private List<GameResultModel> mGamesList;
+    private Context context;
+    int[] colorArray;
 
-
-    public GameSearchAdapter(List<GameResultModel> mGamesList) {
+    public GameSearchAdapter(Context context, List<GameResultModel> mGamesList) {
         this.mGamesList = mGamesList;
+        this.context = context;
+        colorArray = context.getResources().getIntArray(R.array.viewcard_colors);
     }
 
     @Override
     public GameSearchBindingHolder onCreateViewHolder(ViewGroup parent, int type) {
         View singleCard = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.game_card, parent, false);
+        setCardBackgroundColor(singleCard);
         GameSearchBindingHolder holder = new GameSearchBindingHolder(singleCard);
         return holder;
     }
@@ -72,5 +80,14 @@ public class GameSearchAdapter extends RecyclerView.Adapter<GameSearchAdapter.Ga
         public ViewDataBinding getBinding() {
             return binding;
         }
+
+    }
+    private void setCardBackgroundColor(View view){
+
+        CardView cardView = (CardView) view;
+        int randomAndroidColor = colorArray[new Random().nextInt(colorArray.length)];
+        cardView.setCardBackgroundColor(randomAndroidColor);
+
+
     }
 }

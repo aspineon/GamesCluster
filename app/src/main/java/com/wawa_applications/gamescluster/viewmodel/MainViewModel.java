@@ -52,7 +52,6 @@ public class MainViewModel extends BaseObservable {
     public void onClickSearchGames(View view) {
         recyclerVisibility = View.GONE;
         progressVisibility = View.VISIBLE;
-        hideKeyboard();
         notifyPropertyChanged(BR._all);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://www.giantbomb.com")
@@ -104,11 +103,6 @@ public class MainViewModel extends BaseObservable {
         gamesList.clear();
         gamesList.addAll(respond.getResults());
         notifyPropertyChanged(BR._all);
-    }
-
-    private void hideKeyboard(){
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
     }
 
     @Bindable
