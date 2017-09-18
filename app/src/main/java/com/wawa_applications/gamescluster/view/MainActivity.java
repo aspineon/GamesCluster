@@ -1,4 +1,4 @@
-package com.wawa_applications.gamescluster;
+package com.wawa_applications.gamescluster.view;
 
 import android.app.Activity;
 import android.databinding.DataBindingUtil;
@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
+import com.wawa_applications.gamescluster.R;
 import com.wawa_applications.gamescluster.databinding.ActivityMainBinding;
 import com.wawa_applications.gamescluster.view.GameSearchAdapter;
 import com.wawa_applications.gamescluster.viewmodel.MainViewModel;

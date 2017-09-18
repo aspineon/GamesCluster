@@ -1,6 +1,7 @@
 package com.wawa_applications.gamescluster.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.graphics.Color;
@@ -56,13 +57,13 @@ public class GameSearchAdapter extends RecyclerView.Adapter<GameSearchAdapter.Ga
     }
 
 
-    public static class GameSearchBindingHolder extends RecyclerView.ViewHolder {
+    public class GameSearchBindingHolder extends RecyclerView.ViewHolder {
         private ViewDataBinding binding;
 
         public GameSearchBindingHolder(View rowView) {
             super(rowView);
             binding = DataBindingUtil.bind(rowView);
-/*
+
             rowView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -71,10 +72,11 @@ public class GameSearchAdapter extends RecyclerView.Adapter<GameSearchAdapter.Ga
 
                     Context context = v.getContext();
                     Intent intent = new Intent(context, GameDetailsActivity.class);
-                    intent.putExtra(context.getString(R.string.key_game_id, mGamesList.get(position).getId());
+                    intent.putExtra(context.getString(R.string.key_game_id), mGamesList.get(position).getId());
+                    intent.putExtra(context.getString(R.string.key_game_name), mGamesList.get(position).getName());
                     context.startActivity(intent);
                 }
-            });*/
+            });
         }
 
         public ViewDataBinding getBinding() {
