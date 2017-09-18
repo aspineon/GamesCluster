@@ -12,6 +12,6 @@ import retrofit2.http.Query;
 
 public interface GiantBombService {
 
-    @GET("api/search/?api_key=[API-KEY]&format=json&resources=game")
+    @GET("api/search/?api_key=0d4589718155469fbe6d4fa07bd4d4dd973225c8&format=json&resources=game&limit=70")
     Observable<GiantBombSearchModel> searchForGames(@Query("query") String gameName);
 }

@@ -1,15 +1,8 @@
 package com.wawa_applications.gamescluster.model.search;
 
-import android.databinding.BindingAdapter;
-import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import com.wawa_applications.gamescluster.model.details.GameImageModel;
 
 /**
  * Created by Wojtek Krzywiec on 22/08/2017.

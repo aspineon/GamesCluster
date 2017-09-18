@@ -1,13 +1,13 @@
-package com.wawa_applications.gamescluster.model.search;
+package com.wawa_applications.gamescluster.model.details;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Wojtek Krzywiec on 22/08/2017.
+ * Created by Wojtek on 2017-09-15.
  */
 
-public class GameImageModel {
+public class GameScreenshots {
 
     @SerializedName("small_url")
     @Expose
