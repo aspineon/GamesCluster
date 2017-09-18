@@ -6,8 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
 import com.wawa_applications.gamescluster.databinding.ActivityMainBinding;
@@ -24,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mainActivityBinding;
     private MainViewModel mainViewModel;
     private RecyclerView recyclerView;
+    private EditText editText;
     GameSearchAdapter mAdapter;
 
     @Override
@@ -39,6 +44,20 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.smoothScrollToPosition(0);
+
+        editText = (EditText) findViewById(R.id.game_search_input);
+
+        editText.setOnEditorActionListener(new EditText.OnEditorActionListener(){
+
+            @Override
+            public boolean onEditorAction(TextView textView, int actionID, KeyEvent keyEvent) {
+                if (actionID == EditorInfo.IME_ACTION_DONE){
+                    onClickSearchGames(textView);
+                    return true;
+                }
+                return false;
+            }
+        });
 
     }
 
