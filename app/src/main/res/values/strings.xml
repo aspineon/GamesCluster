@@ -6,4 +6,5 @@
     <string name="key_game_id">GAME ID</string>
     <string name="key_game_name">GAME NAME</string>
     <string name="hello_blank_fragment">hello</string>
+    <string name="gameResource">3030-</string>
 </resources>
