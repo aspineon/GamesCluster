@@ -3,13 +3,13 @@ package com.wawa_applications.gamescluster.model.details;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by Wojtek on 2017-09-18.
  */
 
-public class GameConcept {
-
-    public class Concept {
+public class GameConcept implements Serializable {
 
         @SerializedName("name")
         @Expose
@@ -23,5 +23,4 @@ public class GameConcept {
             this.name = name;
         }
 
-    }
 }

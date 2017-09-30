@@ -7,4 +7,6 @@
     <string name="key_game_name">GAME NAME</string>
     <string name="hello_blank_fragment">hello</string>
     <string name="gameResource">3030-</string>
+    <string name="key_details_model">DETAILS MODEL</string>
+    <string name="button_details">More details</string>
 </resources>

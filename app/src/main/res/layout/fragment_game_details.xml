@@ -5,26 +5,241 @@
     xmlns:tools="http://schemas.android.com/tools">
 
         <data>
-                <variable
-                    name="detailsViewModel"
-                    type="com.wawa_applications.gamescluster.viewmodel.GameDetailsViewModel"/>
+            <import type="android.view.View" />
 
-                <variable
-                    name="detailsModel"
-                    type="com.wawa_applications.gamescluster.model.details.GameDetailsModel"/>
+            <import type="com.wawa_applications.gamescluster.viewmodel.GameDetailsViewModel" />
+            <variable
+                    name="viewModel"
+                    type="GameDetailsViewModel" />
+
+            <import type="com.wawa_applications.gamescluster.model.details.GameDetailsModel" />
+            <variable
+                name="model"
+                type="GameDetailsModel" />
         </data>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-    tools:context="com.wawa_applications.gamescluster.view.GameDetailsFragment">
+            android:layout_margin="10dp"
+        tools:context="com.wawa_applications.gamescluster.view.GameDetailsFragment">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:text="@{model.name}"
+                android:paddingBottom="15dp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:layout_gravity="center"
+                app:imageUrl="@{model.image.smallUrl}"/>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                android:layout_marginTop="15dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="@dimen/basic_info_spaces"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:text="Release date: " />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:text="@{viewModel.gameReleaseDate}" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="@dimen/basic_info_spaces"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:text="Franchise: " />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:text="@{viewModel.franchises}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="@dimen/basic_info_spaces"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:text="Genres: " />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:text="@{viewModel.genres}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="@dimen/basic_info_spaces"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:text="Platforms: " />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:text="@{viewModel.platforms}" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="@dimen/basic_info_spaces"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:text="Rating: " />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:text="@{viewModel.ratings}" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="@dimen/basic_info_spaces"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:text="Developers: " />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:text="@{viewModel.developers}" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="@dimen/basic_info_spaces"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:text="Publishers: " />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:text="@{viewModel.publishers}" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.description}"
+                    android:padding="3dp"/>
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="fill_horizontal"
+                android:text="@{viewModel.tags}"
+                android:padding="3dp"/>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/image_recyclerview"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"/>
+
+            <Button
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/button_details"
+                app:openUrl="@{model.siteDetailUrl}"/>
+
 
         </LinearLayout>
+    </ScrollView>
 </layout>

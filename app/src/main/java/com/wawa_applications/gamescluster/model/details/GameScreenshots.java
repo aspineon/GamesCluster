@@ -3,21 +3,23 @@ package com.wawa_applications.gamescluster.model.details;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by Wojtek on 2017-09-15.
  */
 
-public class GameScreenshots {
+public class GameScreenshots implements Serializable {
 
-    @SerializedName("small_url")
+    @SerializedName("medium_url")
     @Expose
-    private String smallUrl;
+    private String mediumUrl;
 
-    public String getSmallUrl() {
-        return smallUrl;
+    public String getMediumUrl() {
+        return mediumUrl;
     }
 
-    public void setSmallUrl(String smallUrl) {
-        this.smallUrl = smallUrl;
+    public void setMediumUrl(String smallUrl) {
+        this.mediumUrl = smallUrl;
     }
 }

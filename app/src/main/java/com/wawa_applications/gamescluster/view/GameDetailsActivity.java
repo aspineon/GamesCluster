@@ -4,20 +4,20 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.wawa_applications.gamescluster.R;
+import com.wawa_applications.gamescluster.model.details.GameDetailsModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameDetailsActivity extends AppCompatActivity {
-
-    private int gameID;
-    private String gameName;
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -27,23 +27,24 @@ public class GameDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_details);
 
-        gameID = getIntent().getIntExtra(getString(R.string.key_game_id), 1);
-        gameName = getIntent().getStringExtra(getString(R.string.key_game_name));
-
-        Log.v("GamesCluster, gameID:", String.valueOf(gameID));
-        Log.v("GamesCluster, gameName:", gameName);
-
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        setTitle(getIntent().getStringExtra(getString(R.string.key_game_name)));
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new GameDetailsFragment(), "MAIN");
-        adapter.addFragment(new GameVideosFragment(), "VIDEO");
+
+        GameDetailsFragment detailsFragment = new GameDetailsFragment();
+        adapter.addFragment(detailsFragment, "Main");
+
+        GameVideosFragment videosFragment = new GameVideosFragment();
+        adapter.addFragment(videosFragment, "Videos");
+
         viewPager.setAdapter(adapter);
     }
 
@@ -75,4 +76,20 @@ public class GameDetailsActivity extends AppCompatActivity {
             return mFragmentTitleList.get(position);
         }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }

@@ -1,15 +1,18 @@
 package com.wawa_applications.gamescluster.model.details;
 
+import android.databinding.Bindable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Wojtek on 2017-09-15.
  */
 
-public class GameDetailsModel {
+public class GameDetailsModel implements Serializable {
 
     @SerializedName("api_detail_url")
     @Expose
@@ -75,7 +78,7 @@ public class GameDetailsModel {
     @Expose
     private List<GameVideo> gameVideosList = null;
 
-    @SerializedName("concept")
+    @SerializedName("concepts")
     @Expose
     private List<GameConcept> conceptList = null;
 
