@@ -9,15 +9,18 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/middleBar">
+        android:background="@color/middleBar"
+        app:elevation="0dp">
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabMode="fixed"
+            android:layout_height="?attr/actionBarSize"
             app:tabGravity="fill"
-            app:tabTextColor="@color/color_white"/>
+            app:tabIndicatorColor="@color/color_tomato"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/color_tomato"
+            app:tabTextColor="@color/color_white" />
 
     </android.support.design.widget.AppBarLayout>
 

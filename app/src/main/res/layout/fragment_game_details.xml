@@ -27,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
             android:layout_margin="10dp"
+            android:layout_marginBottom="10dp"
         tools:context="com.wawa_applications.gamescluster.view.GameDetailsFragment">
 
             <TextView
@@ -34,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
                 android:text="@{model.name}"
-                android:paddingBottom="15dp"/>
+                android:paddingBottom="15dp" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -43,11 +44,25 @@
                 android:layout_gravity="center"
                 app:imageUrl="@{model.image.smallUrl}"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="Overview"
+                android:textColor="@color/headlines"
+                android:paddingTop="10dp"
+                android:paddingBottom="1dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/headlines" />
+
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardElevation="5dp"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="5dp">
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -195,11 +210,25 @@
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="Description"
+                android:textColor="@color/headlines"
+                android:paddingTop="10dp"
+                android:paddingBottom="1dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/headlines" />
+
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardElevation="5dp"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="5dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -209,12 +238,25 @@
 
             </android.support.v7.widget.CardView>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="Game tags"
+                android:textColor="@color/headlines"
+                android:paddingTop="10dp"
+                android:paddingBottom="1dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/headlines" />
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardElevation="5dp"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="5dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -225,15 +267,51 @@
 
             </android.support.v7.widget.CardView>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="Game images"
+                android:textColor="@color/headlines"
+                android:paddingTop="10dp"
+                android:paddingBottom="1dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/headlines" />
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/image_recyclerview"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="Similar games"
+                android:textColor="@color/headlines"
+                android:paddingTop="10dp"
+                android:paddingBottom="1dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/headlines" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/similar_recyclerview"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="10dp"/>
 
             <Button
                 android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_details"

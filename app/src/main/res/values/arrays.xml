@@ -14,4 +14,17 @@
         <item>@color/color_purple</item>
     </integer-array>
 
+    <array name="gradient_list">
+        <item>@drawable/gradient_red_violet</item>
+        <item>@drawable/gradient_dark_light_blue</item>
+        <item>@drawable/gradient_green_blue</item>
+        <item>@drawable/gradient_green_orange</item>
+        <item>@drawable/gradient_grey_brown</item>
+        <item>@drawable/gradient_ligh_orange_yellow</item>
+        <item>@drawable/gradient_light_green_yellow</item>
+        <item>@drawable/gradient_sea_blue</item>
+        <item>@drawable/gradient_ubuntu</item>
+        <item>@drawable/gradient_violet_gold</item>
+        <item>@drawable/gradient_black_orange</item>
+    </array>
 </resources>

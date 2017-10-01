@@ -84,7 +84,8 @@ public class GameDetailsActivity extends AppCompatActivity {
 
             case android.R.id.home:
 
-                NavUtils.navigateUpFromSameTask(this);
+                onBackPressed();
+                //NavUtils.navigateUpFromSameTask(this);
                 return true;
 
         }

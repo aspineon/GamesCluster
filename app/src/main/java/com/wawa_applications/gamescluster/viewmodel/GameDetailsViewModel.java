@@ -21,6 +21,7 @@ import com.wawa_applications.gamescluster.model.details.GameImageModel;
 import com.wawa_applications.gamescluster.model.details.GamePlatform;
 import com.wawa_applications.gamescluster.model.details.GamePublisher;
 import com.wawa_applications.gamescluster.model.details.GameScreenshots;
+import com.wawa_applications.gamescluster.model.details.GameSimilarGame;
 import com.wawa_applications.gamescluster.model.details.OriginalGameRatingModel;
 import com.wawa_applications.gamescluster.network.GiantBombService;
 
@@ -152,8 +153,6 @@ public class GameDetailsViewModel extends BaseObservable {
     @Bindable
     public String getDescription(){
         String description = "Sorry to say, but this game does not have any description. :( ";
-
-
         String htmlText = gameDetailsModel.getDescription();
 
         if (htmlText != null){
@@ -169,6 +168,7 @@ public class GameDetailsViewModel extends BaseObservable {
             description = Jsoup.clean(str, "", Whitelist.none(), new Document.OutputSettings().prettyPrint(false));
         }
 
+        description = description.substring(3,description.length()-1);
         return description;
     }
 
@@ -179,10 +179,10 @@ public class GameDetailsViewModel extends BaseObservable {
 
         List<GameConcept> conceptList = gameDetailsModel.getConceptList();
         if (conceptList != null){
+            gameTags = "";
             for (GameConcept concept : conceptList){
                 gameTags = gameTags + "\t#" + concept.getName();
             }
-            gameTags = gameTags.substring(4, gameTags.length());
         }
 
         return gameTags;
@@ -209,5 +209,31 @@ public class GameDetailsViewModel extends BaseObservable {
             }
         }
         return imagesUrlList;
+    }
+
+    public List<String> getSimilarGamesNames(){
+        List<String> similarGamesNamesList = new ArrayList<String>();
+
+        List<GameSimilarGame> similarGamesList = gameDetailsModel.getSimilarGamesList();
+
+        if (similarGamesList != null) {
+            for (GameSimilarGame similarGame : similarGamesList){
+                similarGamesNamesList.add(similarGame.getName());
+            }
+        }
+        return similarGamesNamesList;
+    }
+
+    public List<String> getSimilarGamesId(){
+        List<String> similarGamesIdList = new ArrayList<String>();
+
+        List<GameSimilarGame> similarGamesList = gameDetailsModel.getSimilarGamesList();
+
+        if (similarGamesList != null) {
+            for (GameSimilarGame similarGame : similarGamesList){
+                similarGamesIdList.add(String.valueOf(similarGame.getId()));
+            }
+        }
+        return similarGamesIdList;
     }
 }

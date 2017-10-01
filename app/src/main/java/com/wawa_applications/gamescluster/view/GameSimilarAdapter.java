@@ -2,27 +2,22 @@ package com.wawa_applications.gamescluster.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.os.Parcelable;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import com.wawa_applications.gamescluster.BR;
 import com.wawa_applications.gamescluster.R;
 import com.wawa_applications.gamescluster.model.details.GameDetailsResultModel;
-import com.wawa_applications.gamescluster.model.search.GameResultModel;
 import com.wawa_applications.gamescluster.network.GiantBombService;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Random;
 
@@ -34,71 +29,73 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by Wojtek on 2017-09-06.
+ * Created by Wojtek on 2017-10-01.
  */
 
+public class GameSimilarAdapter extends RecyclerView.Adapter<GameSimilarAdapter.GameSimilarHolder> {
 
-public class GameSearchAdapter extends RecyclerView.Adapter<GameSearchAdapter.GameSearchBindingHolder> {
-    private List<GameResultModel> mGamesList;
-    private Context context;
-    int[] colorArray;
+    private List<String> mGameNamesList;
+    private List<String> mGameIdList;
+    Context context;
+    private TypedArray gradientArray;
 
-    public GameSearchAdapter(Context context, List<GameResultModel> mGamesList) {
-        this.mGamesList = mGamesList;
+
+    public GameSimilarAdapter(Context context, List<String> gamesNameList, List<String> gamesIdsList) {
         this.context = context;
-        colorArray = context.getResources().getIntArray(R.array.viewcard_colors);
+        this.mGameNamesList = gamesNameList;
+        this.mGameIdList = gamesIdsList;
+        gradientArray = context.getResources().obtainTypedArray(R.array.gradient_list);
     }
 
     @Override
-    public GameSearchBindingHolder onCreateViewHolder(ViewGroup parent, int type) {
+    public GameSimilarAdapter.GameSimilarHolder onCreateViewHolder(ViewGroup parent, int type) {
+
         View singleCard = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.game_card, parent, false);
-        setCardBackgroundColor(singleCard);
-        GameSearchBindingHolder holder = new GameSearchBindingHolder(singleCard);
+                .inflate(R.layout.similar_game_layout, parent, false);
+        setCardBackgroundGradient(singleCard);
+        GameSimilarAdapter.GameSimilarHolder holder = new GameSimilarAdapter.GameSimilarHolder(singleCard);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(GameSearchBindingHolder holder, int position) {
-        final GameResultModel gameResult = mGamesList.get(position);
+    public void onBindViewHolder(GameSimilarAdapter.GameSimilarHolder holder, int position) {
+        String gameName = mGameNamesList.get(position);
 
-        holder.getBinding().setVariable(BR.gameResult, gameResult);
-        holder.getBinding().executePendingBindings();
+        holder.getGameNameField().setText(gameName);
     }
 
     @Override
     public int getItemCount() {
-        return mGamesList.size();
+        return mGameNamesList.size();
     }
 
 
-    public class GameSearchBindingHolder extends RecyclerView.ViewHolder {
-        private ViewDataBinding binding;
+    public class GameSimilarHolder extends RecyclerView.ViewHolder {
 
-        public GameSearchBindingHolder(View rowView) {
+        private TextView gameNameField;
+
+        public GameSimilarHolder(View rowView) {
             super(rowView);
-            binding = DataBindingUtil.bind(rowView);
+
+            gameNameField = rowView.findViewById(R.id.similar_game_text);
 
             rowView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    context = v.getContext();
 
-                    startDetailsActivity(position);
-
-
+                    startDetailActivityOfSimilarGame(position);
                 }
             });
         }
 
-        private void startDetailsActivity(int position) {
+        private void startDetailActivityOfSimilarGame(int position) {
 
             final int gamePosition = position;
             final Intent intent = new Intent(context, GameDetailsActivity.class);
 
-            String gameFullId = context.getString(R.string.gameResource) + mGamesList.get(gamePosition).getId();
+            String gameFullId = context.getString(R.string.gameResource) + mGameIdList.get(gamePosition);
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://www.giantbomb.com")
                     .addConverterFactory(GsonConverterFactory.create())
@@ -130,24 +127,22 @@ public class GameSearchAdapter extends RecyclerView.Adapter<GameSearchAdapter.Ga
 
                         @Override
                         public void onComplete() {
-                            intent.putExtra(context.getString(R.string.key_game_name), mGamesList.get(gamePosition).getName());
+                            intent.putExtra(context.getString(R.string.key_game_name), mGameNamesList.get(gamePosition));
                             context.startActivity(intent);
                         }
                     });
-
-
         }
 
-        public ViewDataBinding getBinding() {
-            return binding;
+        public TextView getGameNameField() {
+            return gameNameField;
         }
 
     }
-    private void setCardBackgroundColor(View view){
+
+    private void setCardBackgroundGradient(View view){
 
         CardView cardView = (CardView) view;
-        int randomAndroidColor = colorArray[new Random().nextInt(colorArray.length)];
-        cardView.setCardBackgroundColor(randomAndroidColor);
-
+        Drawable randomGradient = gradientArray.getDrawable(new Random().nextInt(gradientArray.length()));
+        cardView.setBackground(randomGradient);
     }
 }
