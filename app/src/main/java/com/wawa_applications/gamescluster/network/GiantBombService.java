@@ -3,6 +3,8 @@ package com.wawa_applications.gamescluster.network;
 
 import com.wawa_applications.gamescluster.model.details.GameDetailsResultModel;
 import com.wawa_applications.gamescluster.model.search.GiantBombSearchModel;
+import com.wawa_applications.gamescluster.model.youtube.YoutubeResultModel;
+
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -23,4 +25,7 @@ public interface GiantBombService {
 
     @GET("api/game/{gameId}/?api_key=[API-KEY]&format=json&field_list=image")
     Observable<GameDetailsResultModel> getGameMainImage(@Path("gameId") String gameId);
+
+    @GET("youtube/v3/search?key=[API-KEY]&part=snippet&maxResults=15")
+    Observable<YoutubeResultModel> getVideos(@Query("q") String videoQuery);
 }

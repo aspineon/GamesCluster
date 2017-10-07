@@ -34,6 +34,8 @@ public class GameDetailsActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         setTitle(getIntent().getStringExtra(getString(R.string.key_game_name)));
+
+
     }
 
     private void setupViewPager(ViewPager viewPager) {

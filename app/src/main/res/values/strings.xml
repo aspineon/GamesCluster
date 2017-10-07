@@ -9,4 +9,8 @@
     <string name="gameResource">3030-</string>
     <string name="key_details_model">DETAILS MODEL</string>
     <string name="button_details">More details</string>
+    <string name="key_video_trailers">Trailers</string>
+    <string name="key_video_reviews">Reviews</string>
+    <string name="key_video_gameplays">Gameplays</string>
+    <string name="youtube_key">[API-KEY]</string>
 </resources>

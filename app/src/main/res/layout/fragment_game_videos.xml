@@ -10,16 +10,81 @@
 
     </data>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginRight="20dp"
+    android:layout_marginLeft="20dp"
     tools:context="com.wawa_applications.gamescluster.view.GameDetailsFragment">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="Trailers"
+        android:textColor="@color/headlines"
+        android:paddingTop="10dp"
+        android:paddingBottom="1dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/headlines" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/trailer_recyclerview"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="Reviews"
+        android:textColor="@color/headlines"
+        android:paddingTop="10dp"
+        android:paddingBottom="1dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/headlines" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/review_recyclerview"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="Gameplays"
+        android:textColor="@color/headlines"
+        android:paddingTop="10dp"
+        android:paddingBottom="1dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/headlines" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/gameplay_recyclerview"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"/>
 
 </LinearLayout>
+
+    </ScrollView>
     </layout>

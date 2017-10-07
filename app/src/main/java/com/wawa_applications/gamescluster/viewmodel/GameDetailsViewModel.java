@@ -10,7 +10,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.databinding.library.baseAdapters.BR;
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.wawa_applications.gamescluster.model.details.GameConcept;
 import com.wawa_applications.gamescluster.model.details.GameDetailsModel;
 import com.wawa_applications.gamescluster.model.details.GameDetailsResultModel;

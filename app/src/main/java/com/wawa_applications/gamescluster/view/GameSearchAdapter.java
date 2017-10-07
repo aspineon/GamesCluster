@@ -3,6 +3,7 @@ package com.wawa_applications.gamescluster.view;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,8 +19,11 @@ import android.widget.Toast;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.wawa_applications.gamescluster.BR;
 import com.wawa_applications.gamescluster.R;
+import com.wawa_applications.gamescluster.model.CombinedApiCalls;
 import com.wawa_applications.gamescluster.model.details.GameDetailsResultModel;
 import com.wawa_applications.gamescluster.model.search.GameResultModel;
+import com.wawa_applications.gamescluster.model.search.GiantBombSearchModel;
+import com.wawa_applications.gamescluster.model.youtube.YoutubeResultModel;
 import com.wawa_applications.gamescluster.network.GiantBombService;
 
 import java.io.Serializable;
@@ -28,10 +32,16 @@ import java.util.Random;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.BiFunction;
+import io.reactivex.functions.Function3;
+import io.reactivex.functions.Function4;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by Wojtek on 2017-09-06.
@@ -98,6 +108,7 @@ public class GameSearchAdapter extends RecyclerView.Adapter<GameSearchAdapter.Ga
             final int gamePosition = position;
             final Intent intent = new Intent(context, GameDetailsActivity.class);
 
+
             String gameFullId = context.getString(R.string.gameResource) + mGamesList.get(gamePosition).getId();
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://www.giantbomb.com")
@@ -105,35 +116,74 @@ public class GameSearchAdapter extends RecyclerView.Adapter<GameSearchAdapter.Ga
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
 
-            GiantBombService apiService = retrofit.create(GiantBombService.class);
-
-            apiService.getGameDetails(gameFullId)
+            io.reactivex.Observable<GameDetailsResultModel> apiService = retrofit.create(GiantBombService.class)
+                .getGameDetails(gameFullId)
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeOn(Schedulers.io())
-                    .subscribe(new Observer<GameDetailsResultModel>() {
+                    .subscribeOn(Schedulers.io());
+
+
+            Retrofit retrofitYoutube = new Retrofit.Builder()
+                    .baseUrl("https://www.googleapis.com")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .build();
+
+            io.reactivex.Observable<YoutubeResultModel> apiVideoTrailers = retrofitYoutube.create(GiantBombService.class)
+                    .getVideos(mGamesList.get(gamePosition).getName() + " game trailers")
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io());
+
+            io.reactivex.Observable<YoutubeResultModel> apiVideoReviews = retrofitYoutube.create(GiantBombService.class)
+                    .getVideos(mGamesList.get(gamePosition).getName() + " game reviews")
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io());
+
+            io.reactivex.Observable<YoutubeResultModel> apivideoGameplays = retrofitYoutube.create(GiantBombService.class)
+                    .getVideos(mGamesList.get(gamePosition).getName() + " gameplays")
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io());
+
+            io.reactivex.Observable<CombinedApiCalls> combined = io.reactivex.Observable.zip(
+                    apiService, apiVideoTrailers, apiVideoReviews, apivideoGameplays,
+                    new Function4<GameDetailsResultModel, YoutubeResultModel, YoutubeResultModel, YoutubeResultModel, CombinedApiCalls>() {
                         @Override
-                        public void onSubscribe(Disposable d) {
-
+                        public CombinedApiCalls apply(
+                                @NonNull GameDetailsResultModel gameDetailsResultModel,
+                                @NonNull YoutubeResultModel youtubeResultModel,
+                                @NonNull YoutubeResultModel youtubeResultModel2,
+                                @NonNull YoutubeResultModel youtubeResultModel3) throws Exception {
+                            return new CombinedApiCalls(gameDetailsResultModel, youtubeResultModel, youtubeResultModel2, youtubeResultModel3);
                         }
+                    }
+            );
 
-                        @Override
-                        public void onNext(GameDetailsResultModel respond) {
+            combined.subscribe(new Observer<CombinedApiCalls>() {
+                @Override
+                public void onSubscribe(Disposable d) {
 
-                            intent.putExtra(context.getString(R.string.key_details_model), respond.getGameDetailsModel());
-                        }
+                }
 
-                        @Override
-                        public void onError(Throwable e) {
-                            Toast.makeText(context, "Error occurs", Toast.LENGTH_SHORT).show();
-                            Log.v("Games Cluster", "Error occurs", e);
-                        }
+                @Override
+                public void onNext(CombinedApiCalls respond) {
+                    intent.putExtra(context.getString(R.string.key_game_name), mGamesList.get(gamePosition).getName());
+                    intent.putExtra(context.getString(R.string.key_details_model), respond.getDetailsResultModel().getGameDetailsModel());
+                    intent.putExtra(context.getString(R.string.key_video_trailers), respond.getYoutubeResultModelTrailers());
+                    intent.putExtra(context.getString(R.string.key_video_reviews), respond.getYoutubeResultModelReviews());
+                    intent.putExtra(context.getString(R.string.key_video_gameplays), respond.getYoutubeResultModelGameplays());
 
-                        @Override
-                        public void onComplete() {
-                            intent.putExtra(context.getString(R.string.key_game_name), mGamesList.get(gamePosition).getName());
-                            context.startActivity(intent);
-                        }
-                    });
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    Toast.makeText(context, "Error occurs", Toast.LENGTH_SHORT).show();
+                    Log.v("Games Cluster", "Error occurs", e);
+                }
+
+                @Override
+                public void onComplete() {
+                    context.startActivity(intent);
+                }
+            });
 
 
         }
