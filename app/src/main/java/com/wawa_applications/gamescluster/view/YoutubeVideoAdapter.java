@@ -3,25 +3,17 @@ package com.wawa_applications.gamescluster.view;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.TypedArray;
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.wawa_applications.gamescluster.R;
-import com.wawa_applications.gamescluster.model.details.GameDetailsResultModel;
 import com.wawa_applications.gamescluster.model.youtube.YoutubeVideoItem;
-import com.wawa_applications.gamescluster.network.GiantBombService;
 
 import java.util.List;
 
@@ -60,6 +52,7 @@ public class YoutubeVideoAdapter extends RecyclerView.Adapter<YoutubeVideoAdapte
                 .load(imageUrl)
                 .fitCenter()
                 .crossFade()
+                .placeholder(R.drawable.ic_action_name)
                 .into(holder.getVideoImage());
     }
 

@@ -45,6 +45,7 @@ public class GameImagesAdapter extends RecyclerView.Adapter<GameImagesAdapter.Ga
                 .load(imageUrl)
                 .fitCenter()
                 .crossFade()
+                .placeholder(R.drawable.ic_action_name)
                 .into(holder.gameImage);
     }
 

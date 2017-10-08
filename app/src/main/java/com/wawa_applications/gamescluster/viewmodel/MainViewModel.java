@@ -1,12 +1,10 @@
 package com.wawa_applications.gamescluster.viewmodel;
 
-import android.app.Activity;
 import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.android.databinding.library.baseAdapters.BR;

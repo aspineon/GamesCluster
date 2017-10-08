@@ -23,8 +23,6 @@ public interface GiantBombService {
     @GET("api/game/{gameId}/?api_key=[API-KEY]&format=json")
     Observable<GameDetailsResultModel> getGameDetails(@Path("gameId") String gameId);
 
-    @GET("api/game/{gameId}/?api_key=[API-KEY]&format=json&field_list=image")
-    Observable<GameDetailsResultModel> getGameMainImage(@Path("gameId") String gameId);
 
     @GET("youtube/v3/search?key=[API-KEY]&part=snippet&maxResults=15")
     Observable<YoutubeResultModel> getVideos(@Query("q") String videoQuery);

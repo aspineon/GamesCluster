@@ -16,12 +16,8 @@ import android.widget.TextView;
 
 import com.wawa_applications.gamescluster.R;
 import com.wawa_applications.gamescluster.databinding.ActivityMainBinding;
-import com.wawa_applications.gamescluster.view.GameSearchAdapter;
 import com.wawa_applications.gamescluster.viewmodel.MainViewModel;
 
-import java.util.Observable;
-
-import io.reactivex.Observer;
 
 
 public class MainActivity extends AppCompatActivity {

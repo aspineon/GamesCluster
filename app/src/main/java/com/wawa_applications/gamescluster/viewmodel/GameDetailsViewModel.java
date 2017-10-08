@@ -1,28 +1,18 @@
 package com.wawa_applications.gamescluster.viewmodel;
 
-import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.text.Html;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.android.databinding.library.baseAdapters.BR;
 import com.wawa_applications.gamescluster.model.details.GameConcept;
 import com.wawa_applications.gamescluster.model.details.GameDetailsModel;
-import com.wawa_applications.gamescluster.model.details.GameDetailsResultModel;
 import com.wawa_applications.gamescluster.model.details.GameDeveloper;
 import com.wawa_applications.gamescluster.model.details.GameFranchise;
 import com.wawa_applications.gamescluster.model.details.GameGenre;
-import com.wawa_applications.gamescluster.model.details.GameImageModel;
 import com.wawa_applications.gamescluster.model.details.GamePlatform;
 import com.wawa_applications.gamescluster.model.details.GamePublisher;
 import com.wawa_applications.gamescluster.model.details.GameScreenshots;
 import com.wawa_applications.gamescluster.model.details.GameSimilarGame;
 import com.wawa_applications.gamescluster.model.details.OriginalGameRatingModel;
-import com.wawa_applications.gamescluster.network.GiantBombService;
 
 import org.jetbrains.annotations.NotNull;
 import org.jsoup.Jsoup;

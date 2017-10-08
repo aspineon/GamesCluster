@@ -4,15 +4,12 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.wawa_applications.gamescluster.R;
-import com.wawa_applications.gamescluster.model.details.GameDetailsModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,9 +82,7 @@ public class GameDetailsActivity extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case android.R.id.home:
-
                 onBackPressed();
-                //NavUtils.navigateUpFromSameTask(this);
                 return true;
 
         }

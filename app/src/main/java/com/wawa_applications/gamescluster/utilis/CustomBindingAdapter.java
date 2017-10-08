@@ -3,22 +3,12 @@ package com.wawa_applications.gamescluster.utilis;
 import android.content.Intent;
 import android.databinding.BindingAdapter;
 import android.net.Uri;
-import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.wawa_applications.gamescluster.R;
-import com.wawa_applications.gamescluster.model.details.GameConcept;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static java.security.AccessController.getContext;
 
 /**
  * Created by Wojtek on 2017-09-13.
@@ -33,6 +23,7 @@ public class CustomBindingAdapter {
                 .load(imageUrl)
                 .fitCenter()
                 .crossFade()
+                .placeholder(R.drawable.ic_action_name)
                 .into(view);
     }
 

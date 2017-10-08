@@ -3,11 +3,7 @@ package com.wawa_applications.gamescluster.view;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.databinding.Observable;
 import android.databinding.ViewDataBinding;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,11 +18,9 @@ import com.wawa_applications.gamescluster.R;
 import com.wawa_applications.gamescluster.model.CombinedApiCalls;
 import com.wawa_applications.gamescluster.model.details.GameDetailsResultModel;
 import com.wawa_applications.gamescluster.model.search.GameResultModel;
-import com.wawa_applications.gamescluster.model.search.GiantBombSearchModel;
 import com.wawa_applications.gamescluster.model.youtube.YoutubeResultModel;
 import com.wawa_applications.gamescluster.network.GiantBombService;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Random;
 
@@ -34,14 +28,11 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.BiFunction;
-import io.reactivex.functions.Function3;
 import io.reactivex.functions.Function4;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by Wojtek on 2017-09-06.
@@ -85,7 +76,7 @@ public class GameSearchAdapter extends RecyclerView.Adapter<GameSearchAdapter.Ga
     public class GameSearchBindingHolder extends RecyclerView.ViewHolder {
         private ViewDataBinding binding;
 
-        public GameSearchBindingHolder(View rowView) {
+        public GameSearchBindingHolder(final View rowView) {
             super(rowView);
             binding = DataBindingUtil.bind(rowView);
 
@@ -95,7 +86,6 @@ public class GameSearchAdapter extends RecyclerView.Adapter<GameSearchAdapter.Ga
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     context = v.getContext();
-
                     startDetailsActivity(position);
 
 

@@ -9,6 +9,7 @@
             type="com.wawa_applications.gamescluster.viewmodel.MainViewModel"/>
     </data>
 
+
 <LinearLayout
 
     android:layout_width="match_parent"
@@ -35,11 +36,6 @@
         android:onClick="onClickSearchGames"
         android:text="@string/game_search_button_text"/>
 
-    <TextView
-        android:id="@+id/search_query_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@{mainViewModel.gameQuery}"/>
 
     <ProgressBar
         android:id="@+id/progress_games"

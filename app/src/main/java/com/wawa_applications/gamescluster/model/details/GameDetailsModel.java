@@ -1,6 +1,5 @@
 package com.wawa_applications.gamescluster.model.details;
 
-import android.databinding.Bindable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

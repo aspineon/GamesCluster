@@ -1,13 +1,9 @@
 package com.wawa_applications.gamescluster.model.search;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.wawa_applications.gamescluster.model.details.GameImageModel;
 
-import java.io.Serializable;
 
 /**
  * Created by Wojtek Krzywiec on 22/08/2017.
